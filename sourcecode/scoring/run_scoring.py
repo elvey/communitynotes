@@ -2,7 +2,7 @@
 
 This file defines "run_scoring" which invokes all Community Notes scoring algorithms,
 merges results and computes contribution statistics for users.  run_scoring should be
-intergrated into main files for execution in internal and external environments.
+integrated into main files for execution in internal and external environments.
 """
 
 from typing import List, Optional, Tuple
@@ -42,7 +42,7 @@ def _merge_results(
 ) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
   """Merges results from a specific model with results from prior models.
 
-  The DFs returned by each model will be (outer) merged and passed through directly to the
+  The Data Frames (DFs) returned by each model will be (outer) merged and passed through directly to the
   return value of run_scoring.  Column names must be unique in each DF with the exception of
   noteId or raterParticipantId, which are used to conduct the merge.
 
@@ -177,7 +177,7 @@ def meta_score(
       RuleID.COVERAGE_MODEL, {RuleID.CORE_MODEL}, c.coverageRatingStatusKey, 0.38
     ),
     scoring_rules.ScoringDriftGuard(RuleID.SCORING_DRIFT_GUARD, {RuleID.CORE_MODEL}, lockedStatus),
-    # TODO: The rule below both sets tags for notes which are CRH / CRNH and unsets status for
+    # TODO: The rule below both sets tags for notes which are CRH / CRNH ("Currently Rated [Not] Helpful") and unsets status for
     # any notes which are CRH / CRNH but don't have enough ratings to assign two tags.  The later
     # behavior can lead to unsetting locked status.  We should refactor this code to (1) remove
     # the behavior which unsets status (instead tags will be assigned on a best effort basis) and
